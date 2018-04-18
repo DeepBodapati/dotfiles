@@ -130,19 +130,23 @@ if [[ -z "$TMUX" ]] && [ "SH_CONNECTION" != "" ]; then
 		echo "No Session found.  Creating and configuring."
 		tmux new-session -d -s ssh_tmux
 		tmux rename-window 'my-tmux'
-		tmux send-keys 'ls' C-m
+		tmux send-keys 'workon trus_C' C-m
 #		tmux send-keys 'export name=$(date +"%Y%m%d%H%M%S")' C-m
 #		tmux send-keys 'python crawler.py > logs/$name.log' C-m
 
-		tmux select-window -t ssh_tmux:0
+#		tmux select-window -t ssh_tmux:0
 
-		tmux split-window -v
-		tmux send-keys 'cd node-gallery/examples' C-m
-		tmux send-keys 'node app.js' C-m
+		tmux split-window -v -p 25
+		tmux send-keys 'cd WIP/node-gallery/examples' C-m
+		tmux send-keys 'nodejs app.js' C-m
 
-		tmux split-window -h
-		tmux send-keys 'echo "pane 3"' C-m
+		tmux split-window -h -p 80
+		tmux send-keys 'workon trus_C' C-m
+		tmux send-keys 'jupyter notebook' C-m
 
+		tmux split-window -h -p 50
+		tmux send-keys 'top' C-m
+		
 		tmux select-pane -t 0.0
 	
 	else
